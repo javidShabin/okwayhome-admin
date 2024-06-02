@@ -1,6 +1,4 @@
-// CreateProduct.js
 import React, { useState } from "react";
-import axios from "axios";
 import { toast } from "react-hot-toast";
 import { axiosInstants } from "../../config/axiosinstents";
 
@@ -12,7 +10,6 @@ const CreateProduct = () => {
     category: "",
     image: null,
   });
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -46,9 +43,9 @@ const CreateProduct = () => {
       const response = await axiosInstants({
         method: "POST",
         url: "/product/create",
-        data: form, // Use 'form' here instead of 'formData'
+        data: form,
         headers: {
-          "Content-Type": "multipart/form-data", // Add appropriate header
+          "Content-Type": "multipart/form-data",
         },
       });
       toast.success(response.data.message);
@@ -68,96 +65,97 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border border-gray-300 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">Create Product</h2>
+    <div className="max-w-xl mx-auto p-8 bg-white rounded-lg shadow-xl border border-gray-100 transition-transform hover:shadow-2xl">
+      <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
+        Add New Product
+      </h2>
       <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label
-            className="block text-sm font-medium text-gray-700"
-            htmlFor="name"
-          >
-            Product Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-          />
+        <div className="space-y-6">
+          <div>
+            <label className="block text-sm font-semibold text-gray-600" htmlFor="name">
+              Product Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full mt-2 p-3 rounded-lg bg-gray-100 border border-transparent focus:border-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300"
+              placeholder="Enter product name"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-600" htmlFor="description">
+              Description
+            </label>
+            <textarea
+              name="description"
+              id="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+              className="w-full mt-2 p-3 rounded-lg bg-gray-100 border border-transparent focus:border-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300"
+              rows="4"
+              placeholder="Enter product description"
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-semibold text-gray-600" htmlFor="price">
+                Price
+              </label>
+              <input
+                type="number"
+                name="price"
+                id="price"
+                value={formData.price}
+                onChange={handleChange}
+                required
+                className="w-full mt-2 p-3 rounded-lg bg-gray-100 border border-transparent focus:border-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300"
+                placeholder="Set price"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-gray-600" htmlFor="category">
+                Category
+              </label>
+              <input
+                type="text"
+                name="category"
+                id="category"
+                value={formData.category}
+                onChange={handleChange}
+                required
+                className="w-full mt-2 p-3 rounded-lg bg-gray-100 border border-transparent focus:border-gray-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300"
+                placeholder="Product category"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-gray-600" htmlFor="image">
+              Upload Image
+            </label>
+            <input
+              type="file"
+              name="image"
+              id="image"
+              onChange={handleFileChange}
+              className="w-full mt-2 p-3 bg-gray-100 rounded-lg border border-transparent focus:border-gray-400 focus:outline-none transition duration-300 cursor-pointer"
+            />
+          </div>
         </div>
-        <div className="mb-4">
-          <label
-            className="block text-sm font-medium text-gray-700"
-            htmlFor="description"
-          >
-            Description
-          </label>
-          <textarea
-            name="description"
-            id="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-sm font-medium text-gray-700"
-            htmlFor="price"
-          >
-            Price
-          </label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-sm font-medium text-gray-700"
-            htmlFor="category"
-          >
-            Category
-          </label>
-          <input
-            type="text"
-            name="category"
-            id="category"
-            value={formData.category}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            className="block text-sm font-medium text-gray-700"
-            htmlFor="image"
-          >
-            Upload Image
-          </label>
-          <input
-            type="file"
-            name="image"
-            id="image"
-            onChange={handleFileChange}
-            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-          />
-        </div>
+
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white font-bold py-2 rounded hover:bg-blue-600"
+          className="w-full mt-6 py-3 bg-orange-400 text-white font-bold rounded-lg shadow-md"
         >
-          Add Product
+          Create Product
         </button>
       </form>
     </div>
