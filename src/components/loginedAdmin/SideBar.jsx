@@ -18,19 +18,19 @@ const AdminSidebar = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/products"
+              to="/admin/product-list"
               className="text-gray-600 hover:text-indigo-600"
             >
               Products
             </Link>
           </li>
           <li className="mb-4">
-            <Link to="/orders" className="text-gray-600 hover:text-indigo-600">
+            <Link to="/admin/order-list" className="text-gray-600 hover:text-indigo-600">
               Orders
             </Link>
           </li>
           <li className="mb-4">
-            <Link to="/users" className="text-gray-600 hover:text-indigo-600">
+            <Link to="/admin/user-list" className="text-gray-600 hover:text-indigo-600">
               Users
             </Link>
           </li>
