@@ -1,15 +1,30 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { axiosInstants } from "../config/axiosinstents";
+import toast from "react-hot-toast";
 
 
 export default function SignupPage() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    console.log(data)
+    try {
+      const response = await axiosInstants({
+        method: "POST",
+        url: "/admin/register",
+        data
+      })
+      navigate('/')
+      console.log(response)
+      toast.success(response.data.message)
+    } catch (error) {
+      console.log(error)
+     toast.error(error.response.data.message)
+    }
   };
 
   return (
@@ -64,7 +79,7 @@ export default function SignupPage() {
 
         <p className="text-gray-500">
           Already have account?{" "}
-          <Link>
+          <Link to={'/login'}>
             <span className="text-orange-400">Login</span>
           </Link>
         </p>

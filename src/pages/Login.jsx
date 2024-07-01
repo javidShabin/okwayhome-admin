@@ -4,13 +4,13 @@ import { axiosInstants } from "../config/axiosinstents";
 import toast from "react-hot-toast";
 
 export default function LoginPage() {
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // navigation function from react router
-  const navigate = useNavigate();
+  
   const onSubmit = async (data) => {
     try {
       await axiosInstants({

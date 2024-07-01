@@ -10,7 +10,7 @@ const AdminSidebar = () => {
         <ul>
           <li className="mb-4">
             <Link
-              to="/dashboard"
+              to="/"
               className="text-gray-600 hover:text-indigo-600"
             >
               Dashboard
