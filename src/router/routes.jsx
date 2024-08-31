@@ -9,6 +9,7 @@ import UserList from "../pages/loginedAdmin/UserList";
 import ProductList from "../pages/loginedAdmin/ProductList";
 import OrderList from "../pages/loginedAdmin/OrderList";
 import ChatPage from "../pages/loginedAdmin/ChatPage";
+import CreateProduct from "../components/loginedAdmin/CreateProduct";
 
 
 
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
           {
             path: "chat",
             element: <ChatPage/>
+          },
+          {
+            path: "create-product",
+            element: <CreateProduct/>
           }
         ]
       }

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { axiosInstants } from "../../config/axiosinstents";
 import { useDispatch } from "react-redux";
 import { productCount } from "../../redux/features/countSlice";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]); // Initialize as an empty array
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null); // State for error handling
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -18,7 +19,12 @@ const ProductList = () => {
         });
         // Assuming your API response structure has a products array
         setProducts(response.data || []); // Ensure it's always an array
-        dispatch(productCount({ length: response.data.length, products: response.data }));
+        dispatch(
+          productCount({
+            length: response.data.length,
+            products: response.data,
+          })
+        );
       } catch (error) {
         console.error("Error fetching products:", error);
         setError("Failed to load products. Please try again later."); // Set error message
@@ -48,9 +54,11 @@ const ProductList = () => {
       {/* Total product count */}
       {/* Add Product Button */}
       <div className="text-center mb-6">
-        <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">
-          Add Product
-        </button>
+        <Link to={'/admin/create-product'}>
+          <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition">
+            Add Product
+          </button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {products.length > 0 ? (
