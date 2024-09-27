@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import SideBar from "../components/SideBar";
+import { axiosInstants } from "../config/axiosinstents";
 
 const AdminLayout = () => {
+  const checkAdmin = async () => {
+    try {
+      const response = await axiosInstants({
+        method: "GET",
+        url: "/admin/check-admin"
+      })
+      console.log(response)
+    } catch (error) {
+      
+    }
+  }
+  useEffect(()=>{
+    checkAdmin()
+  },[])
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sticky Sidebar */}
