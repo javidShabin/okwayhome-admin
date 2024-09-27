@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import ChatPage from './loginedAdmin/ChatPage';
 
 
 const Dashboard = () => {
@@ -133,7 +134,8 @@ const Dashboard = () => {
         </div>
 
         {/* Message Management Section */}
-        <div className="bg-white shadow-xl rounded-lg p-6 mt-8">
+        <ChatPage/>
+        {/* <div className="bg-white shadow-xl rounded-lg p-6 mt-8">
           <h2 className="text-gray-800 text-xl font-bold mb-6">Messages</h2>
 
           <table className="min-w-full table-auto">
@@ -164,7 +166,7 @@ const Dashboard = () => {
               ))}
             </tbody>
           </table>
-        </div>
+        </div> */}
 
         {/* Review Management Section */}
         <div className="bg-white shadow-xl rounded-lg p-6 mt-8">
