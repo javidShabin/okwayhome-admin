@@ -2,7 +2,7 @@ import { UserCircle } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UserSideBar = () => {
+const AdminSidebar = () => {
   return (
     <div>
       <h2 className="text-2xl font-bold text-gray-800 mb-6">Admin Panel</h2>
@@ -50,9 +50,9 @@ const UserSideBar = () => {
               Settings
             </Link>
           </li>
-          <li className="mb-4">
+          <li className="mb-4 ">
             <Link to="/settings">
-              <UserCircle />
+              <UserCircle className="text-black" />
             </Link>
           </li>
         </ul>
@@ -61,4 +61,4 @@ const UserSideBar = () => {
   );
 };
 
-export default UserSideBar;
+export default AdminSidebar;
