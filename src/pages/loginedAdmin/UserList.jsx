@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { axiosInstants } from '../../config/axiosinstents';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux"; // Import useDispatch
+import { axiosInstants } from "../../config/axiosinstents";
+import { setUserCount } from "../../redux/features/countSlice"; // Import the setUserCount action
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [isConfirming, setIsConfirming] = useState(false); // New state for confirmation modal
+  const dispatch = useDispatch(); // Initialize useDispatch
 
   // Fetch all users from the backend
   const getAllUsers = async () => {
@@ -14,6 +17,8 @@ const UserList = () => {
         url: "/user/user-list",
       });
       setUsers(response.data); // Set the fetched users to the state
+      dispatch(setUserCount(response.data.length)); // Dispatch action to update user count in Redux
+      console.log(response.data.length, "=== user length");
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -27,6 +32,7 @@ const UserList = () => {
         url: `/user/remove/${userId}`,
       });
       setUsers(users.filter((user) => user._id !== userId)); // Update the user list after deletion
+      dispatch(setUserCount(users.length - 1)); // Update user count after deletion
       setIsConfirming(false); // Reset confirmation modal
       setSelectedUserId(null); // Reset selected user
     } catch (error) {
@@ -46,7 +52,9 @@ const UserList = () => {
 
   return (
     <div className="max-w-5xl mx-auto p-8 bg-gradient-to-r from-purple-300 to-indigo-300 rounded-lg shadow-2xl">
-      <h2 className="text-5xl font-extrabold text-gray-800 mb-6 text-center">User List</h2>
+      <h2 className="text-5xl font-extrabold text-gray-800 mb-6 text-center">
+        User List
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {users.length > 0 ? (
           users.map((user) => (
@@ -61,17 +69,37 @@ const UserList = () => {
                 alt={`${user.name}'s profile`}
                 className="w-28 h-28 rounded-full object-cover mb-4 mx-auto border-4 border-purple-500 shadow-lg"
               />
-              <h3 className="text-2xl font-semibold text-gray-900 text-center">{user.name}</h3>
+              <h3 className="text-2xl font-semibold text-gray-900 text-center">
+                {user.name}
+              </h3>
               <p className="text-md text-gray-600 text-center">{user.email}</p>
               {/* Display additional user details */}
               <div className="text-sm text-gray-500 mt-2">
-                {user.username && <p><span className="font-medium">Username:</span> {user.username}</p>}
-                {user.role && <p><span className="font-medium">Role:</span> {user.role}</p>}
-                {user.phone && <p><span className="font-medium">Phone:</span> {user.phone}</p>}
-                {user.address && <p><span className="font-medium">Address:</span> {user.address}</p>}
+                {user.username && (
+                  <p>
+                    <span className="font-medium">Username:</span>{" "}
+                    {user.username}
+                  </p>
+                )}
+                {user.role && (
+                  <p>
+                    <span className="font-medium">Role:</span> {user.role}
+                  </p>
+                )}
+                {user.phone && (
+                  <p>
+                    <span className="font-medium">Phone:</span> {user.phone}
+                  </p>
+                )}
+                {user.address && (
+                  <p>
+                    <span className="font-medium">Address:</span> {user.address}
+                  </p>
+                )}
                 {user.createdAt && (
                   <p>
-                    <span className="font-medium">Joined:</span> {new Date(user.createdAt).toLocaleDateString()}
+                    <span className="font-medium">Joined:</span>{" "}
+                    {new Date(user.createdAt).toLocaleDateString()}
                   </p>
                 )}
               </div>
@@ -90,7 +118,9 @@ const UserList = () => {
             </div>
           ))
         ) : (
-          <div className="text-center text-gray-500 py-4">No users available...</div>
+          <div className="text-center text-gray-500 py-4">
+            No users available...
+          </div>
         )}
       </div>
 
