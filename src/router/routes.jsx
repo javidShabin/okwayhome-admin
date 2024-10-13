@@ -8,6 +8,7 @@ import AdminAuth from "./protectedRoutes/AdminAuth";
 import UserList from "../pages/loginedAdmin/UserList";
 import ProductList from "../pages/loginedAdmin/ProductList";
 import OrderList from "../pages/loginedAdmin/OrderList";
+import ChatPage from "../pages/loginedAdmin/ChatPage";
 
 
 
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
           {
             path: "order-list",
             element: <OrderList/>
+          },
+          {
+            path: "chat",
+            element: <ChatPage/>
           }
         ]
       }

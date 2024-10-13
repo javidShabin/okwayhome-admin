@@ -152,38 +152,6 @@ const Dashboard = () => {
 
         {/* Message Management Section */}
         <ChatPage />
-        {/* <div className="bg-white shadow-xl rounded-lg p-6 mt-8">
-          <h2 className="text-gray-800 text-xl font-bold mb-6">Messages</h2>
-
-          <table className="min-w-full table-auto">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-4 py-2 text-left text-gray-600 font-semibold">User</th>
-                <th className="px-4 py-2 text-left text-gray-600 font-semibold">Email</th>
-                <th className="px-4 py-2 text-left text-gray-600 font-semibold">Message</th>
-                <th className="px-4 py-2 text-left text-gray-600 font-semibold">Status</th>
-                <th className="px-4 py-2 text-left text-gray-600 font-semibold">Action</th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
-              {messages.map((message) => (
-                <tr key={message.id} className="border-b">
-                  <td className="px-4 py-3">{message.user}</td>
-                  <td className="px-4 py-3">{message.email}</td>
-                  <td className="px-4 py-3">{message.content}</td>
-                  <td className="px-4 py-3">
-                    <span className={`text-sm ${message.status === 'New' ? 'text-blue-700 bg-blue-200' : message.status === 'Urgent' ? 'text-red-700 bg-red-200' : 'text-gray-700 bg-gray-200'} px-3 py-1 rounded-full`}>
-                      {message.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <button className="text-red-600 hover:text-red-800">Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div> */}
 
         {/* Review Management Section */}
         <div className="bg-white shadow-xl rounded-lg p-6 mt-8">

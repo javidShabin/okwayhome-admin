@@ -36,7 +36,7 @@ const AdminSidebar = () => {
           </li>
           <li className="mb-4">
             <Link
-              to="/messages"
+              to="/admin/chat"
               className="text-gray-600 hover:text-indigo-600"
             >
               Messages
