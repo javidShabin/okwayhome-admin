@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+
 
 const Dashboard = () => {
   // Sample reviews data
@@ -56,52 +57,12 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Sticky Sidebar */}
-      <aside className="bg-gray-50 text-[#dbdbdb] shadow-lg w-64 p-6 sticky top-0 h-screen">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Admin Panel</h2>
-        <nav>
-          <ul>
-            <li className="mb-4">
-              <Link to="/dashboard" className="text-gray-600 hover:text-indigo-600">
-                Dashboard
-              </Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/products" className="text-gray-600 hover:text-indigo-600">
-                Products
-              </Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/orders" className="text-gray-600 hover:text-indigo-600">
-                Orders
-              </Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/users" className="text-gray-600 hover:text-indigo-600">
-                Users
-              </Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/messages" className="text-gray-600 hover:text-indigo-600">
-                Messages
-              </Link>
-            </li>
-            <li className="mb-4">
-              <Link to="/settings" className="text-gray-600 hover:text-indigo-600">
-                Settings
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </aside>
+    <div>
 
       {/* Main Content */}
       <main className="flex-1 p-6">
         {/* Header */}
-        <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">Admin Dashboard</h1>
-        </div>
+        <Header/>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

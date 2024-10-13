@@ -1,15 +1,16 @@
+import { UserCircle } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const UserSideBar = () => {
   return (
     <div>
-      <h2 className="text-2xl text-justify font-bold text-gray-800 mb-6">Admin Panel</h2>
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">Admin Panel</h2>
       <nav>
-        <ul className="text-justify">
+        <ul>
           <li className="mb-4">
             <Link
-              to="/"
+              to="/dashboard"
               className="text-gray-600 hover:text-indigo-600"
             >
               Dashboard
@@ -29,7 +30,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li className="mb-4">
-            <Link to="/" className="text-gray-600 hover:text-indigo-600">
+            <Link to="/users" className="text-gray-600 hover:text-indigo-600">
               Users
             </Link>
           </li>
@@ -50,11 +51,8 @@ const SideBar = () => {
             </Link>
           </li>
           <li className="mb-4">
-            <Link
-              to="/register"
-              className="text-orange-600 text-[21px] font-semibold hover:text-orange-600"
-            >
-              join
+            <Link to="/settings">
+              <UserCircle />
             </Link>
           </li>
         </ul>
@@ -63,4 +61,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default UserSideBar;

@@ -1,40 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import { axiosInstants } from "../config/axiosinstents";
-import Header from "../components/loginedAdmin/Header";
-
+import React from "react";
+import { Outlet } from "react-router-dom";
+import SideBar from "../components/SideBar";
 
 const AdminLayout = () => {
-  const location = useLocation();
-  const [loading, setLoading] = useState(true);
-
-  const checkUser = async () => {
-    try {
-      await axiosInstants({
-        method: "GET",
-        url: "/user/check-user",
-      });
-    } catch (error) {
-      console.error("Error checking user:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-  useEffect(() => {
-    checkUser();
-  }, [location.pathname]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center">
-        <span className="loading loading-dots loading-lg bg-gradient-to-r from-yellow-500 to-orange-600 "></span>
-      </div>
-    ); // Optionally show a loading indicator
-  }
   return (
-    <div>
-      <Header/>
-      <Outlet />
+    <div className="flex min-h-screen bg-gray-50">
+      {/* Sticky Sidebar */}
+      <aside className="bg-gray-50 text-white shadow-lg p-8 w-64 sticky top-0 h-screen flex-shrink-0">
+        <SideBar />
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-6 overflow-auto">
+        <Outlet />
+      </main>
     </div>
   );
 };
